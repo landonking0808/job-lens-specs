@@ -1,0 +1,74 @@
+- !<AssetImportMetadata/701af0f6-992f-4144-969a-e1502fea4765>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> a474a327-accf-4aeb-a81b-8c82080eff5c
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> a474a327-accf-4aeb-a81b-8c82080eff5c
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 136b481e-6c54-42b3-aa13-83257d855394
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/136b481e-6c54-42b3-aa13-83257d855394>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: a5fdc4f0-b860-4bd9-8059-2309d151f171
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    arrowColor: false
+    arrowDistanceCm: false
+    arrowSizeCm: false
+    edgeHalfHeightCm: false
+    edgeHalfWidthCm: false
+    imageMaterial: false
+    inViewHalfAngleX: false
+    inViewHalfAngleY: false
+    panel: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panel: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      imageMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      arrowDistanceCm: !<float> 60.000000
+      arrowSizeCm: !<float> 3.000000
+      edgeHalfWidthCm: !<float> 17.000000
+      edgeHalfHeightCm: !<float> 11.000000
+      inViewHalfAngleX: !<float> 22.000000
+      inViewHalfAngleY: !<float> 16.000000
+      arrowColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.900000}
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"Job Lens — Hint Arrow"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input SceneObject panel {"hint":"The parked checklist panel (root SceneObject with the Frame)."}'
+    - '// @input Asset.Material imageMaterial {"hint":"Image material (UI Kit Image.mat) cloned for the arrow glyph."}'
+    - '// @input float arrowDistanceCm = 60 {"hint":"Distance in front of the eyes where the arrow floats, in cm.", "widget":"slider", "min":30, "max":120, "step":1}'
+    - '// @input float arrowSizeCm = 3 {"hint":"Arrow size in cm.", "widget":"slider", "min":1, "max":8, "step":0.1}'
+    - '// @input float edgeHalfWidthCm = 13 {"hint":"Half-width of the comfortable view at arrowDistanceCm, in cm. The arrow parks on this edge.", "widget":"slider", "min":5, "max":40, "step":0.5}'
+    - '// @input float edgeHalfHeightCm = 9 {"hint":"Half-height of the comfortable view at arrowDistanceCm, in cm.", "widget":"slider", "min":5, "max":40, "step":0.5}'
+    - "// @input float inViewHalfAngleX = 22 {\"hint\":\"Horizontal half-angle (degrees) inside which the panel counts as 'in view'.\", \"widget\":\"slider\", \"min\":5, \"max\":45, \"step\":1}"
+    - "// @input float inViewHalfAngleY = 16 {\"hint\":\"Vertical half-angle (degrees) inside which the panel counts as 'in view'.\", \"widget\":\"slider\", \"min\":5, \"max\":45, \"step\":1}"
+    - '// @input vec4 arrowColor = {1,1,1,0.9} {"hint":"Arrow tint. Keep it light: black renders transparent on Specs.", "widget":"color"}'
+    - '// @ui {"widget":"group_end"}'

@@ -1,0 +1,68 @@
+- !<AssetImportMetadata/0f1a2d64-7310-4623-815d-9fa8e6980ccf>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 17ed4ee1-f03c-4944-8c3a-4e37a9915aab
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 17ed4ee1-f03c-4944-8c3a-4e37a9915aab
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 8381ee3f-f411-4647-a751-fe8d79892358
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/8381ee3f-f411-4647-a751-fe8d79892358>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 269e43a9-f1ae-4a98-a5d2-6f198a9803e5
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    dimTextColor: false
+    doneColor: false
+    imageMaterial: false
+    ringEmptyColor: false
+    textColor: false
+    toastSeconds: false
+    warnColor: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - imageMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      toastSeconds: !<float> 2.000000
+      textColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+      dimTextColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.600000}
+      doneColor: !<Vec4> {x: 0.450000, y: 0.900000, z: 0.550000, w: 1.000000}
+      ringEmptyColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.280000}
+      warnColor: !<Vec4> {x: 1.000000, y: 0.720000, z: 0.350000, w: 1.000000}
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"Job Lens — Checklist Panel"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input Asset.Material imageMaterial {"hint":"Image material (UI Kit Image.mat). Cloned per icon / ring dot."}'
+    - '// @input float toastSeconds = 2 {"hint":"Seconds the toast (room done / issue logged) stays before it has faded.", "widget":"slider", "min":0.5, "max":5, "step":0.1}'
+    - '// @input vec4 textColor = {1,1,1,1} {"hint":"Primary text colour. Keep it light: black renders transparent on Specs.", "widget":"color"}'
+    - '// @input vec4 dimTextColor = {1,1,1,0.72} {"hint":"Secondary text colour (done rows, captions).", "widget":"color"}'
+    - '// @input vec4 doneColor = {0.45,0.92,0.55,1} {"hint":"Done colour: check marks, filled ring arc, finished room tabs.", "widget":"color"}'
+    - '// @input vec4 ringEmptyColor = {1,1,1,0.3} {"hint":"Progress ring track colour (the unfilled part).", "widget":"color"}'
+    - '// @input vec4 warnColor = {1,0.72,0.35,1} {"hint":"Warm colour for time left under 15 minutes and for overtime.", "widget":"color"}'
+    - '// @ui {"widget":"group_end"}'
