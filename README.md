@@ -52,7 +52,7 @@ Status: tested in the Lens Studio preview only. It has not yet been run on a Spe
 
 - **Planned** with the Devpost Learn skill pack for SPECS (`plan-lens` skill from [challengepost/learn-specs](https://github.com/challengepost/learn-specs)), which produced [`devpost/design-brief.md`](devpost/design-brief.md).
 - **Built** by a coding agent through the **CLAD** plugin, with **Lens Studio** and the **Lens Studio MCP**.
-- **Tested** with **LEAF** in the Lens Studio 5.24.1 preview. All 8 scenarios pass on the final build:
+- **Tested** with **LEAF** in the Lens Studio 5.24.1 preview. All 8 scenarios pass together in one LEAF "run all" from a fresh preview (each scenario resets the state it depends on, including the panel position):
 
 | # | Scenario | Result |
 | --- | --- | --- |
