@@ -11,7 +11,7 @@ export class JobLensDemoFlagMenuScenario extends Scenario {
   async run(): Promise<void> {
     const it = new JobLensLeafInteractor()
     await sleep(800)
-    await it.ensureJobRunning()
+    await it.freshJob()
     await it.tap("Task-Wipe counters")
     await it.tap("Task-Clean stovetop")
     await it.tap("FlagIssueButton")

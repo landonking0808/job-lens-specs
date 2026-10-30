@@ -12,7 +12,7 @@ export class JobLensStartScenario extends Scenario {
   async run(): Promise<void> {
     const it = new JobLensLeafInteractor()
     await sleep(1000)
-    await it.resetToStart()
+    await it.freshStart()
 
     expect(getPanel().currentPhase, "should be on the Start card").toBe("start")
     expect(hasObject("StartJobButton"), "Start card shows a Start job button").toBe(true)

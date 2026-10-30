@@ -17,7 +17,7 @@ export class JobLensIkReachScenario extends Scenario {
   async run(): Promise<void> {
     const it = new JobLensLeafInteractor()
     await sleep(1000)
-    await it.resetToStart()
+    await it.freshStart()
 
     const start = findInteractablesByName("StartJobButton", undefined, true)[0]
     expect(start !== undefined, "Start job button exists").toBe(true)

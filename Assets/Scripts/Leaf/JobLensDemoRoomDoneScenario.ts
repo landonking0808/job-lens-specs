@@ -12,7 +12,7 @@ export class JobLensDemoRoomDoneScenario extends Scenario {
   async run(): Promise<void> {
     const it = new JobLensLeafInteractor()
     await sleep(800)
-    const panel = await it.ensureJobRunning()
+    const panel = await it.freshJob()
     panel.toastSeconds = 120
     await it.checkAllTasksInCurrentRoom(panel)
     await sleep(600)

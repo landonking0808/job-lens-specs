@@ -13,7 +13,7 @@ export class JobLensFlagScenario extends Scenario {
   async run(): Promise<void> {
     const it = new JobLensLeafInteractor()
     await sleep(1000)
-    const panel = await it.ensureJobRunning()
+    const panel = await it.freshJob()
     const state = panel.state
     const flagsBefore = state.flags.length
     expect(buttonLabel("FlagIssueButton"), "button shows the current flag count").toBe(`Flag issue (${flagsBefore})`)

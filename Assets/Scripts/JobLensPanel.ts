@@ -215,7 +215,19 @@ export class JobLensPanel extends BaseScriptComponent {
 
   // ── Lifecycle ──────────────────────────────────────────────────────────────
 
+  // Where the panel was parked when the Lens started (scene placement). Tests put it
+  // back here so a drag in one LEAF scenario does not leak into the next.
+  private homeLocalPosition!: vec3
+  private homeLocalRotation!: quat
+  private homeLocalScale!: vec3
+  private defaultToastSeconds = 2.0
+
   onAwake() {
+    const tr = this.sceneObject.getTransform()
+    this.homeLocalPosition = tr.getLocalPosition()
+    this.homeLocalRotation = tr.getLocalRotation()
+    this.homeLocalScale = tr.getLocalScale()
+    this.defaultToastSeconds = this.toastSeconds
     this.sceneObject.createComponent("Component.Canvas")
     this.frame = this.sceneObject.createComponent(Frame.getTypeName()) as Frame
     this.frame.autoShowHide = false
@@ -307,6 +319,22 @@ export class JobLensPanel extends BaseScriptComponent {
   advanceClockForTest(seconds: number): void {
     this.state.tick(seconds)
     this.refreshClock(true)
+  }
+
+  /** Test hook: put the panel back where the scene parked it (undoing any drag) and
+   *  restore the toast duration a demo scenario may have stretched. */
+  resetPlacementForTest(): void {
+    const tr = this.sceneObject.getTransform()
+    tr.setLocalPosition(this.homeLocalPosition)
+    tr.setLocalRotation(this.homeLocalRotation)
+    tr.setLocalScale(this.homeLocalScale)
+    this.toastSeconds = this.defaultToastSeconds
+  }
+
+  /** Test hook: true when the panel sits at its parked home placement. */
+  isAtHomeForTest(eps: number = 0.05): boolean {
+    const tr = this.sceneObject.getTransform()
+    return tr.getLocalPosition().distance(this.homeLocalPosition) < eps
   }
 
   get currentPhase(): Phase {

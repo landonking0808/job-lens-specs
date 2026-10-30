@@ -83,6 +83,41 @@ export class JobLensLeafInteractor extends DefaultLeafInteractor {
     return getPanel()
   }
 
+  /** Per-scenario setup: every scenario starts from the same state whatever ran
+   *  before it in LEAF's "run all" (one preview, no reload between scenarios).
+   *  Puts the panel back at its parked placement (a drag in an earlier scenario
+   *  must not move the targets for the next one), restores the toast duration,
+   *  and brings the panel to the Start card with a fresh, empty job. */
+  async freshStart(): Promise<JobLensPanel> {
+    getPanel().resetPlacementForTest()
+    await this.resetToStart()
+    await sleep(SETTLE_MS)
+    const panel = getPanel()
+    if (panel.currentPhase !== "start") throw new Error(`setup: expected the Start card, got "${panel.currentPhase}"`)
+    if (!panel.isAtHomeForTest()) throw new Error("setup: panel is not at its parked placement")
+    return panel
+  }
+
+  /** Per-scenario setup for scenarios that need a running job: fresh start, then
+   *  Start job, so tasks, issues, clock and room all begin from zero. */
+  async freshJob(): Promise<JobLensPanel> {
+    await this.freshStart()
+    await this.tap("StartJobButton")
+    await sleep(SETTLE_MS)
+    const panel = getPanel()
+    if (panel.currentPhase !== "job") throw new Error(`setup: expected a running job, got "${panel.currentPhase}"`)
+    if (panel.state.totalDone() !== 0 || panel.state.flags.length !== 0 || panel.state.currentRoom !== 0) {
+      throw new Error("setup: fresh job did not start clean")
+    }
+    return panel
+  }
+
+  /** Per-scenario teardown: undo anything that outlives the scenario (placement). */
+  teardown(): void {
+    const p = getPanel()
+    p.resetPlacementForTest()
+  }
+
   /** Make sure a job is running (Start card → checklist) and return the panel. */
   async ensureJobRunning(): Promise<JobLensPanel> {
     if (getPanel().currentPhase === "summary") await this.tap("NewJobButton")

@@ -12,24 +12,29 @@ export class JobLensHandleDragScenario extends Scenario {
   async run(): Promise<void> {
     const it = new JobLensLeafInteractor()
     await sleep(1000)
-    await it.ensureJobRunning()
+    await it.freshJob()
 
-    const panelObj = findObject("JobLensPanel")
-    const before = panelObj.getTransform().getWorldPosition()
-    const handle = findInteractablesByName("Handle", undefined, true)[0]
-    expect(handle !== undefined, "the handle bar is pinchable").toBe(true)
+    try {
+      const panelObj = findObject("JobLensPanel")
+      const before = panelObj.getTransform().getWorldPosition()
+      const handle = findInteractablesByName("Handle", undefined, true)[0]
+      expect(handle !== undefined, "the handle bar is pinchable").toBe(true)
 
-    await it.drag(handle, new vec3(14, 0, 0), 900)
-    await sleep(600)
+      await it.drag(handle, new vec3(14, 0, 0), 900)
+      await sleep(600)
 
-    const after = panelObj.getTransform().getWorldPosition()
-    const moved = after.distance(before)
-    expect(moved, `dragging the handle moves the whole panel (moved ${moved.toFixed(1)} cm)`).toBeGreaterThan(3)
-    expect(after.x - before.x, "panel followed the drag to the right").toBeGreaterThan(2)
+      const after = panelObj.getTransform().getWorldPosition()
+      const moved = after.distance(before)
+      expect(moved, `dragging the handle moves the whole panel (moved ${moved.toFixed(1)} cm)`).toBeGreaterThan(3)
+      expect(after.x - before.x, "panel followed the drag to the right").toBeGreaterThan(2)
 
-    // It stays where it was dropped.
-    await sleep(800)
-    const later = panelObj.getTransform().getWorldPosition()
-    expect(later.distance(after), "panel stays parked after the drop").toBeLessThan(1.0)
+      // It stays where it was dropped.
+      await sleep(800)
+      const later = panelObj.getTransform().getWorldPosition()
+      expect(later.distance(after), "panel stays parked after the drop").toBeLessThan(1.0)
+    } finally {
+      // Teardown: put the panel back so later scenarios (08 reach test) find it parked.
+      it.teardown()
+    }
   }
 }

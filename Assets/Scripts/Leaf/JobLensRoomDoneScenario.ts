@@ -11,7 +11,7 @@ export class JobLensRoomDoneScenario extends Scenario {
   async run(): Promise<void> {
     const it = new JobLensLeafInteractor()
     await sleep(1000)
-    const panel = await it.ensureJobRunning()
+    const panel = await it.freshJob()
     const state = panel.state
 
     // Work in the Kitchen.
